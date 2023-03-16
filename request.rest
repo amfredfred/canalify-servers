@@ -1,0 +1,12 @@
+POST http://localhost:2000/users/
+Content-Type: application/json
+
+{
+    "email":"amdsedv@dgmail.com",
+    "name" : "Manfred Orjioke",
+    "username" : "user name it is",
+    "password" : "password"
+}
+
+###
+GET http://localhost:2000/users/d6037a  HTTP/1.1

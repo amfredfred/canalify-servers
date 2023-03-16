@@ -1,21 +1,22 @@
 const express = require('express')
 const app = express()
+const mongoose = require('mongoose')
 
-//middlewares
+if (process.env.NODE_ENV !== 'production')
+    require('dotenv').config()
+
+/* middlewares */
 app.use(express.json())
 
-//routes
+/* Authentication route */
+app.use('/users', require('./routes/authentication'))
 
 
-
-
-
-
-
-
-
-
-
+//DB connection with mongoose
+mongoose.connect(process.env.DB_URL)
+const DB = mongoose.connection
+DB.on('error', (error) => console.log("ERROR DB CONNECTION: ", error))
+DB.once('open', () => console.log("SUCCESSFUl DB CONNECTION "))
 
 
 
