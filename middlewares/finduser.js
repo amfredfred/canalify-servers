@@ -11,11 +11,11 @@ async function findUser(req, res, next) {
     })
 
     if (String(account).split('@')[1])
-        query_params.email = account
+        query_params.email = String(account).toUpperCase()
     if (String(account).length <= 7 && !String(account).split('@')[1])
         query_params.username = String(account).toUpperCase()
     if (String(account).length > 9 && !String(account).split('@')[1])
-        query_params.phone = account
+        query_params.phone = String(account).toUpperCase()
 
     const [user] = await Promise.allSettled([User.findOne(query_params)])
 

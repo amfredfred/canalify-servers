@@ -1,15 +1,12 @@
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
-
-if (process.env.NODE_ENV !== 'production')
-    require('dotenv').config()
-
-/* middlewares */
+require('dotenv').config()
 app.use(express.json())
 
-/* Authentication route */
-app.use('/users', require('./routes/authentication'))
+
+/* Wallets route */
+app.use('/wallets', require('./routes/wallets'))
 
 
 //DB connection with mongoose
@@ -21,7 +18,4 @@ DB.once('open', () => console.log("SUCCESSFUl DB CONNECTION "))
 
 
 
-
-
-//
-app.listen(2000)
+app.listen(2001)
