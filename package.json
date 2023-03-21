@@ -9,11 +9,12 @@
     "start-wallet": "node wallet-server.js",
     "start-transact": "node transact-server.js",
     "start-system": "node system-server.js",
-    
+    "start-transaction": "node transaction-server.js",
     "watch": "nodemon auth-server.js",
     "watch-wallet": "nodemon wallet-server.js",
     "watch-transact": "nodemon transact-server.js",
-    "watch-system": "nodemon system-server.js"
+    "watch-system": "nodemon system-server.js",
+    "watch-transaction": "nodemon transaction-server.js"
   },
   "keywords": [
     "canaify",
@@ -23,6 +24,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.3.4",
     "bcrypt": "^5.1.0",
     "crypto": "^1.0.1",
     "dotenv": "^16.0.3",

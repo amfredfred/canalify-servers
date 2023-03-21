@@ -10,8 +10,6 @@ async function findWallet(req, res, next) {
         message: 'wallet identifier required'
     })
 
-    console.log(query_params, 'PARAMS')
-
     if (req.body.user_id) query_params.user_id = req.body.user_id
     if (req.body.symbol) query_params.symbol = req.body.symbol
     if (req.body.name) query_params.name = req.body.name
@@ -25,7 +23,7 @@ async function findWallet(req, res, next) {
     if (wallet?.status === 'rejected') {
         res.status(500).json({
             message: 'something went wrong',
-            error: user?.reason?.errors
+            error: wallet?.reason?.errors
         })
     }
     res.wallet = wallet.value

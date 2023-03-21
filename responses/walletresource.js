@@ -17,6 +17,4 @@ const walletCollection = (wallets = []) => wallets.map(wallet => walletResource(
 module.exports.walletCollection = walletCollection
 module.exports.walletResource = walletResource
 
-const walletsCollection = walletCollection([/* ARRAY TO LOOP THROUGH*/]) 
-
 //@idevfred

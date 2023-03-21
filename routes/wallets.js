@@ -4,7 +4,7 @@ const User = require('../models/user-model')
 const Wallet = require('../models/wallet-model')
 const { authenticated } = require('../middlewares/authenticated')
 const { findWallet } = require('../middlewares/findwallet')
-const walletResource = require('../responses/walletresource')
+const { walletResource } = require('../responses/walletresource')
 
 
 /* Get a wallet */
@@ -17,8 +17,8 @@ ROUTE.get('/:id', authenticated, findWallet, async (req, res) => {
     })
 })
 
-/* Create a wallet */
-ROUTE.post('/', authenticated, findWallet, async (req, res) => {
+/* Create a wallet for user*/
+ROUTE.post('', authenticated, findWallet, async (req, res) => {
     const { symbol, code, name } = req.body
 
     if (Boolean(res.wallet)) return res.status(400).json({
@@ -32,7 +32,7 @@ ROUTE.post('/', authenticated, findWallet, async (req, res) => {
         base_wallet: true,
         balance_before: Math.random() * 21,
         balance_after: 0,
-        balance_as_base: Math.random() * 400, 
+        balance_as_base: Math.random() * 400,
         rate: 1,
     })
 
@@ -42,9 +42,23 @@ ROUTE.post('/', authenticated, findWallet, async (req, res) => {
         return res.status(500).json({ message: 'soemthing went wrong!' })
 
     const wallet = walletResource(walletSaved.value)
-    console.log(wallet, 'NEW WALLET')
+
     res.status(201).json({ message: "wallet activated successfully!", wallet })
 })
+
+/* Patch a user wallet */
+
+ROUTE.patch('', authenticated, findWallet, async (req, res) => {
+    const { code, active } = req.body
+    const [walletSaved] = await Promise.allSettled([Wallet.findOneAndUpdate({ code }, { active })])
+    console.log(walletSaved)
+    walletSaved.value.active = active
+    if (walletSaved.status === 'rejected')
+        return res.status(500).json({ message: 'soemthing went wrong!' })
+    const wallet = walletResource(walletSaved.value)
+    res.json({ message: "wallet updated successfully!", wallet })
+})
+
 
 
 

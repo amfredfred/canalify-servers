@@ -32,6 +32,11 @@ const SystemWalletsSchema = new mongoose.Schema(
             required: [true, "Is this a base wallet"],
             default: false
         },
+        rate: {
+            type: Number,
+            required: [true, "Rate is required!"],
+            default: 0
+        }
     },
     { timestamps: true }
 )

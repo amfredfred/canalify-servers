@@ -6,7 +6,7 @@ const userResource = (user = {}) => ({
     createdAt: user?.createdAt,
     updatedAt: user?.updatedAt,
     verified: user?.verified,
-    privillages: user?.privillage
+    privilege: user?.privillage
 })
 
 module.exports = userResource

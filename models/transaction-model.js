@@ -41,16 +41,6 @@ const TransactionSchema = new mongoose.Schema(
             required: [true, "what is the transaction status?"],
             default: "PENDING"
         },
-        created_at: {
-            type: Date,
-            required: [true, "creation time required!"],
-            default: Date.now
-        },
-        updated_at: {
-            type: Date,
-            required: [true, "update time required!"],
-            default: Date.now
-        },
         remarks: {
             type: String,
             default: null

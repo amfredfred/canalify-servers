@@ -45,7 +45,7 @@ const WalletScheme = new mongoose.Schema(
             default: null
         },
         rate: {
-            type: String,
+            type: Number,
             default: 1
         }
     },

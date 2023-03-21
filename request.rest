@@ -1,45 +1,30 @@
 GET http://localhost:1000/systems
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDE0NDY3ZTVkZDQ5MTAzMzFhYjk5YjIiLCJ1c2VybmFtZSI6IjdCNjUzNzAiLCJlbWFpbCI6IkRFVkBNQUlMLkNPTSIsImlhdCI6MTY3OTA2Mzg2N30.51MZn28wLUMdziVrUOovjg7-NLc5wHqEYbFSOa4XBF8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDE1MDViYzExMzFkOGExNjFhZDVkYzciLCJ1c2VybmFtZSI6IjM1MzA5QkQiLCJlbWFpbCI6IkRFVkBNQUlMLkNPTSIsImlhdCI6MTY3OTA5OTMyNH0.AswDYKXz-0GCgKn4-QF8hSbkmC0jIZoiZs2bhVfc3AY
 
 ###
 
-POST http://localhost:1000/system-wallets
+POST http://localhost:1005/transact/swap
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDE1MDViYzExMzFkOGExNjFhZDVkYzciLCJ1c2VybmFtZSI6IjM1MzA5QkQiLCJlbWFpbCI6IkRFVkBNQUlMLkNPTSIsImlhdCI6MTY3OTA5OTMyNH0.AswDYKXz-0GCgKn4-QF8hSbkmC0jIZoiZs2bhVfc3AY
 
 {
-    "name":"United States Dollar",
-    "symbol":"$",
-    "code":"USD"
+    "from":{"code":"NGN"},
+    "to":{"code":"USD"},
+    "minOutput":1,
+    "value":2
 }
 
-###
-
-POST http://localhost:2000/users
-Content-Type: application/json
-
-{
-    "email":"dev@mail.com",
-    "password" :"password"
-}
-
-###
-
-POST http://localhost:2000/users/login
-Content-Type: application/json
-
-{
-    "email":"dev@mail.com",
-    "password" :"password"
-}
-
-###
-PATCH  http://localhost:1000/system-wallets
+####
+POST http://localhost:2001/wallets
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDE1MDViYzExMzFkOGExNjFhZDVkYzciLCJ1c2VybmFtZSI6IjM1MzA5QkQiLCJlbWFpbCI6IkRFVkBNQUlMLkNPTSIsImlhdCI6MTY3OTA5OTMyNH0.AswDYKXz-0GCgKn4-QF8hSbkmC0jIZoiZs2bhVfc3AY
 Content-Type: application/json
 
 {
     "name":"Nigerian Naira",
-    "symbol":"N",
-    "code":"ENGN",
-    "useable" :true,
-    "base_wallet" :false
+    "symbol":"Ng",
+    "code":"NGN"
 }
+
+###
+
+GET https://v6.exchangerate-api.com/v6/da8bb207555b91c52d1434ab/pair/NGN/USD/5040
