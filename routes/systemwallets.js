@@ -35,16 +35,13 @@ ROUTE.post('', async (req, res) => {
 
     const { name, code, useable, symbol, active, fee, rate } = req.body
     const nW = new SystemWallet({ name, code, useable, symbol, active, fee, rate })
-
     const [svdW] = await Promise.allSettled([nW.save()])
-
     if (svdW.status === 'rejected') {
         return res.status(500).json({
             message: 'something went wrong!',
             error: svdW?.reason
         })
     }
-
     res.status(201).json({ wallet: svdW })
 })
 
@@ -67,7 +64,7 @@ ROUTE.patch('', async (req, res) => {
         })
     }
 
-    res.json({ message: "wallet updated successfully!!", wallet: walletUpdate?.value })
+    res.send("wallet updated successfully!!")
 })
 
 module.exports = ROUTE

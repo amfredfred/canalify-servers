@@ -25,7 +25,7 @@ async function findUser(req, res, next) {
             error: user?.reason?.errors
         })
     }
-    res.user = user.value
+    res['user'] = user.value
     next()
 }
 

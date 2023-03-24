@@ -39,25 +39,24 @@ ROUTE.post('', authenticated, findWallet, async (req, res) => {
     const [walletSaved] = await Promise.allSettled([newWallet.save()])
 
     if (walletSaved.status === 'rejected')
-        return res.status(500).json({ message: 'soemthing went wrong!' })
+        return res.status(500).send('soemthing went wrong!')
 
     const wallet = walletResource(walletSaved.value)
 
-    res.status(201).json({ message: "wallet activated successfully!", wallet })
+    res.status(201).send("wallet activated successfully!")
 })
 
 /* Patch a user wallet */
-
 ROUTE.patch('', authenticated, findWallet, async (req, res) => {
     const { code, active } = req.body
     const [walletSaved] = await Promise.allSettled([Wallet.findOneAndUpdate({ code }, { active })])
-    console.log(walletSaved)
     walletSaved.value.active = active
     if (walletSaved.status === 'rejected')
-        return res.status(500).json({ message: 'soemthing went wrong!' })
+        return res.status(500).send('something went wrong!')
     const wallet = walletResource(walletSaved.value)
-    res.json({ message: "wallet updated successfully!", wallet })
+    res.send("wallet updated successfully!")
 })
+
 
 
 

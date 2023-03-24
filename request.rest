@@ -8,10 +8,10 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDE1MDViYzExMzFkOGExNjFhZDVkYzciLCJ1c2VybmFtZSI6IjM1MzA5QkQiLCJlbWFpbCI6IkRFVkBNQUlMLkNPTSIsImlhdCI6MTY3OTA5OTMyNH0.AswDYKXz-0GCgKn4-QF8hSbkmC0jIZoiZs2bhVfc3AY
 
 {
-    "from":{"code":"NGN"},
-    "to":{"code":"USD"},
+    "from": "NGN" ,
+    "to": "USD" ,
     "minOutput":1,
-    "value":2
+    "value":46024.89
 }
 
 ####
@@ -27,4 +27,37 @@ Content-Type: application/json
 
 ###
 
-GET https://v6.exchangerate-api.com/v6/da8bb207555b91c52d1434ab/pair/NGN/USD/5040
+POST http://localhost:1000/systems/get-transfer-methods
+Content-Type: application/json
+
+{
+    "from":"USD",
+    "to":"NGN" 
+}
+
+###
+POST http://localhost:1000/systems/new-transfer-method
+Content-Type: application/json
+
+{
+    "name":"Bank",
+    "active":true,
+    "description":"Use Bank payment method",
+    "code":"BANK",
+    "fee": 0,
+    "wallets_for":["NGN", "UGX"]
+}
+
+###
+POST http://localhost:1005/transact/send
+Content-Type: application/json
+
+{
+    "method":"b",
+    "destination":{
+        "bank":"UBA",
+        "account":"1234567890",
+        "name":"Orjioke manfred tochukwu"
+    },
+    "currency":"NGN"
+}

@@ -7,12 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-auth": "node auth-server.js",
     "start-wallet": "node wallet-server.js",
-    "start-transact": "node transact-server.js",
     "start-system": "node system-server.js",
     "start-transaction": "node transaction-server.js",
     "watch": "nodemon auth-server.js",
     "watch-wallet": "nodemon wallet-server.js",
-    "watch-transact": "nodemon transact-server.js",
     "watch-system": "nodemon system-server.js",
     "watch-transaction": "nodemon transaction-server.js"
   },
@@ -29,6 +27,7 @@
     "crypto": "^1.0.1",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "flutterwave-node-v3": "^1.1.2",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.2"
   }

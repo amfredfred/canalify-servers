@@ -10,13 +10,12 @@ async function hasPrivileges(req, res, next) {
     const { userId } = res.account
     const [account] = await Promise.allSettled([User.findOne({ _id: userId })])
 
-    if (account.status === 'rejected') return res.status(500).json(
-        { messge: 'PRIVILLAGE_MIDDLEWARE: something went wrong' }
-    )
+    if (account.status === 'rejected') return res.status(500)
+        .send('PRIVILLAGE: something went wrong')
 
-    if (!Boolean(account?.value)) return res.status(404).json(
-        { message: "PRIVILLAGE_MIDDLEWARE: null user" }
-    )
+    if (!Boolean(account?.value)) return res.status(404)
+        .send("PRIVILLAGE: null user")
+
     const Privileges = userResource(account.value).privilege
     res.privilege = Privileges
     next()
